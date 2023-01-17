@@ -15,7 +15,15 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('ReportCreator_name');
+            $table->string('Report_Title');
+            $table->date('Report_date');
+            $table->string('statusbyHOSD')->nullable();
+            $table->string('statusbyCoordinator')->nullable();
+            $table->string('statusbyDean')->nullable();
+            $table->string('Report_description');
+            $table->string('Report_objective');
+            $table->timestamps('');
         });
     }
 

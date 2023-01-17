@@ -96,7 +96,7 @@
 
 
                                 </td>
-                                @include('report.delete')
+                                @include('report.delete_report')
                             </tr>
                             @endforeach
                             @else

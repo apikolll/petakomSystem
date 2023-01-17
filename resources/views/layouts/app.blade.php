@@ -100,12 +100,11 @@
                             </li> --}}
                             @if (Auth::user()->category == 'student' || Auth::user()->category == 'lecturer' || Auth::user()->category == 'committee')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('proposal.view') }}">{{ __('Proposal') }}</a>
-                                </li>
+                                <a class="nav-link" href="//showproposal_view">{{ __('Proposal') }}</a>
+                            </li>
                             @elseif (Auth::user()->category == 'coordinator')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('ProposalCoordinator.page') }}">{{ __('Proposal') }}</a>
-                            </li>
                             </li>
                             @elseif (Auth::user()->category == 'headofdevelopment')
                             <li class="nav-item">
@@ -125,19 +124,18 @@
                             @if (Auth::user()->category == 'student' || Auth::user()->category == 'lecturer' || Auth::user()->category == 'committee')
                             <li class="nav-item">
                                 <a class="nav-link" href="/showreport_view">{{ __('Report') }}</a>
-                                </li>
+                            </li>
                             @elseif (Auth::user()->category == 'coordinator')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('Coordinator.page') }}">{{ __('Report') }}</a>
-                            </li>
+                                <a class="nav-link" href="{{ route('ReportCoordinator.page') }}">{{ __('Report') }}</a>
                             </li>
                             @elseif (Auth::user()->category == 'headofdevelopment')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('HOSD.page') }}">{{ __('Report') }}</a>
+                                <a class="nav-link" href="{{ route('ReportHOSD.page') }}">{{ __('Report') }}</a>
                             </li>
                             @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('Dean.page') }}">{{ __('Report') }}</a>
+                                <a class="nav-link" href="{{ route('ReportDean.page') }}">{{ __('Report') }}</a>
                             </li>
                             @endif
                             @endif

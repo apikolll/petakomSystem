@@ -1,7 +1,7 @@
-<form action="{{ route('destroy.report', $report->id) }}" method="POST">
+<form action="{{ route('destroy.report', $reports->id) }}" method="POST">
     @csrf
     {{-- @method('DELETE') --}}
-    <div class="modal fade" id="ModalDelete{{ $report->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="ModalDelete{{ $reports->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -10,7 +10,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to delete <b>{{ $report->ReportCreator_name }}</b>?
+                    Are you sure you want to delete <b>{{ $reports->ReportCreator_name }}</b>?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

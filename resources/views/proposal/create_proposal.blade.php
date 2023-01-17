@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="card-text w-75">
-                        <form action="{{ route('store.proposal') }}" method="post">
+                        <form action="{{ route('store.proposal') }}" method="POST">
                             @csrf
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" name="ProposalCreator_name" id="floatingInput" placeholder="Proposal Creator Name">
@@ -41,7 +41,7 @@
                                 <input type="text" class="form-control" name="Proposal_description" id="floatingInput" placeholder="Proposal description">
                                 <label for="floatingInput">Proposal description</label>
                             </div>
-                            <button class="btn btn-warning w-100 p-2 fs-5">Create</button>
+                            <button class="btn btn-warning w-100 p-2 fs-5" type="submit">Create</button>
                         </form>
                     </div>
                 </div>

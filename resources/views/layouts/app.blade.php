@@ -100,7 +100,7 @@
                             </li> --}}
                             @if (Auth::user()->category == 'student' || Auth::user()->category == 'lecturer' || Auth::user()->category == 'committee')
                             <li class="nav-item">
-                                <a class="nav-link" href="//showproposal_view">{{ __('Proposal') }}</a>
+                                <a class="nav-link" href="/showproposal_view">{{ __('Proposal') }}</a>
                             </li>
                             @elseif (Auth::user()->category == 'coordinator')
                             <li class="nav-item">

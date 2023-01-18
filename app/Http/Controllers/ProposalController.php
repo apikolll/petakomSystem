@@ -42,7 +42,7 @@ class ProposalController extends Controller
         return view('proposal.proposal_view', compact('proposal'));
     }
 
-    public function createProposal($id)
+    public function createProposal()
     {
         return view('proposal.create_proposal');
     }

@@ -148,18 +148,17 @@ Route::controller(ProposalController::class)->group(function () {
 
 //----------------------------- REPORT MODULE ----------------------------//
 Route::controller(ReportController::class)->group(function () {
-    
     //Group of view for role student and lecturer, committee
-    Route::group(['middleware' => ['auth', 'student']], function () {
-        Route::get('/showreport_view', 'showReport')->name('report.view');
-        Route::get('/createreport', 'createReport')->name('report.create');
-        Route::get('/edireport/{id}', 'editReport')->name('report.edit');
-        Route::post('/storereport', 'store')->name('store.report');
-        Route::post('/updatereport/{id}', 'update')->name('update.report');
-        Route::post('/deletereport/{id}', 'destroy')->name('destroy.report');
-        Route::get('/showreport/{id}', 'show')->name('report.show');
-        Route::get('/reportdelete/{id}', 'showDelete')->name('report.delete');
+    Route::middleware(['auth', 'user:student, lecturer, committee'])->group(function () {
+        Route::get('/showreport_view', [ReportController::class, 'showReport'])->name('report.view');
+        Route::get('/createreport', [ReportController::class, 'createReport'])->name('report.create');
+        Route::get('/editreport/{id}', [ReportController::class, 'editReport'])->name('report.edit');
+        Route::post('/storereport', [ReportController::class, 'store'])->name('store.report');
+        Route::post('/updatereport/{id}', [ReportController::class, 'update'])->name('update.report');
+        Route::post('/deletereport/{id}', [ReportController::class, 'destroy'])->name('destroy.report');
+        Route::get('/reportdelete/{id}', [ReportController::class, 'showDelete'])->name('report.delete');
     });
+
     //Group of view for role head of development
     Route::group(['middleware' => ['auth', 'user:headofdevelopment']], function () {
         Route::get('/ReportHOSDpage', 'ReportProposedHOSD')->name('ReportHOSD.page');

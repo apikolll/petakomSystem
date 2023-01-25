@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\ProposeProposal;
 
 
 class ProposalModel extends Model
 {
     use HasFactory;
-
+    protected $table = 'proposals';
+    protected $primarykey = 'id';
     protected $fillable = [
         'ProposalCreator_name',
         'Proposal_Title',
@@ -22,7 +22,4 @@ class ProposalModel extends Model
         'Proposal_objective'
     ];
 
-    public function propose(){
-        return $this->hasOne(ProposeProposal::class);
-    }
 }

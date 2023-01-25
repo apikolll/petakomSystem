@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\ProposalModel;
+use App\Models\ReportModel;
 
-class ProposeProposal extends Model
+class ProposeReport extends Model
 {
     use HasFactory;
 
-    public function Proposal(){
-        return $this->belongsTo(ProposalModel::class);
+    public function Report(){
+        return $this->belongsTo(ReportModel::class);
     }
 }

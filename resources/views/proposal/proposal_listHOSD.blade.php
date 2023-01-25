@@ -1,3 +1,5 @@
+<!-- This is where view list of proposal, approve or decline report for HOSD  -->
+
 @extends('layouts.app')
 
 @section('content')
@@ -5,11 +7,11 @@
 <section class="p-5">
     <div class="container">
         <div class="text-center">
-            <span class="fw-semibold display-2">Proposal</span>
+            <span class="fw-semibold display-2">Proposals</span>
         </div>
 
-        {{-- <a href="{{ route(proposal.create') }}" class="btn btn-warning p-2 mb-3 fw-semibold">Create new
-            proposal</a> --}}
+        {{-- <a href="{{ route('proposal.create') }}" class="btn btn-warning p-2 mb-3 fw-semibold">Create new
+        proposal</a> --}}
 
         @if (Session::has('success'))
         <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
@@ -44,7 +46,7 @@
                                 <td>{{ $proposals->proposal->Proposal_Title }}</td>
                                 <td>{{ \Carbon\Carbon::parse($proposals->proposal->Proposal_date)->format('j F, Y') }}</td>
                                 <td>
-                                    @if ($proposals->proposal->statusbyHOSD == "Rejected")
+                                    @if (proposals->proposals->statusbyHOSD == "Rejected")
                                     <div class="badge bg-danger text-wrap" style="width: 6rem;">
                                         {{ $proposals->proposal->statusbyHOSD }}
                                     </div>

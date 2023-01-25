@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('propose_reports', function (Blueprint $table) {
+        Schema::create('propose_proposals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('reports_id')->unique();
+            $table->foreignId('proposals_id')->unique();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('propose_reports');
+        Schema::dropIfExists('propose_proposals');
     }
 };

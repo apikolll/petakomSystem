@@ -1,3 +1,5 @@
+<!--View Proposal ----->
+
 @extends('layouts.app')
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -13,6 +15,7 @@
         <div class="text-center">
             <span class="display-2 fw-semibold ">{{ $proposal->Proposal_Title }}</span>
 
+            
             <div class="row justify-content-md-center fs-5">
                 <div class="col col-lg-2 text-end fw-semibold">
                     Date
@@ -32,7 +35,7 @@
                     :
                 </div>
                 <div class="col col-lg-6 text-start">
-                    {{ $activity->ProposalCreator_name }}
+                    {{ $proposal->ProposalCreator_name }}
                 </div>
             </div>
             <div class="row justify-content-md-center fs-5 mt-3">

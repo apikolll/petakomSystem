@@ -1,3 +1,5 @@
+<!-- This is where view list of proposal, approve or decline report for Coordinator  -->
+
 @extends('layouts.app')
 
 @section('content')
@@ -8,7 +10,7 @@
             <span class="fw-semibold display-2">Proposal</span>
         </div>
 
-        {{-- <a href="{{ route('proposal.create') }}" class="btn btn-warning p-2 mb-3 fw-semibold">Create new
+        {{-- <a href="{{ route('report.create') }}" class="btn btn-warning p-2 mb-3 fw-semibold">Create new
             proposal</a> --}}
 
         @if (Session::has('success'))
@@ -44,7 +46,7 @@
                                 <td>{{ $proposals->proposal->Proposal_Title }}</td>
                                 <td>{{ \Carbon\Carbon::parse($proposals->proposal->Proposal_date)->format('j F, Y') }}</td>
                                 <td>
-                                    @if ($proposals->proposal->statusbyCoordinator == "Rejected")
+                                    @if ($proposals->proposals->statusbyCoordinator == "Rejected")
                                     <div class="badge bg-danger text-wrap" style="width: 6rem;">
                                         {{ $proposals->proposal->statusbyCoordinator }}
                                     </div>
@@ -59,7 +61,7 @@
                                         class="text-decoration-none btn btn-outline-success">View</a>
                                     <a href="{{ route('ProposalCoordinator.approve', $proposals->proposal->id) }}"
                                         class="text-decoration-none btn btn-primary">Approve</a>
-                                    <a href="{{ route('ProposalCoordinator.reject', $proposals->proposal->id) }}"
+                                    <a href="{{ route('ReportCoordinator.reject', $proposals->proposal->id) }}"
                                         class="text-decoration-none btn btn-danger">Reject</a>
                                 </td>
                             </tr>

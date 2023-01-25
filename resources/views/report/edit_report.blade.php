@@ -36,11 +36,11 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" name="report_objective" id="floatingInput" placeholder="Report objective">
-                                <label for="floatingInput">{{ $report->report_objective }}</label>
+                                <label for="floatingInput">{{ $report->Report_objective }}</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" name="report_description" id="floatingInput" placeholder="Report description">
-                                <label for="floatingInput">{{ $report->report_description }}</label>
+                                <label for="floatingInput">{{ $report->Report_description }}</label>
                             </div>
                             <button class="btn btn-primary w-100 p-2 fs-5">Update</button>
                         </form>

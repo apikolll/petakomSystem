@@ -1,86 +1,101 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\ProposalModel;
 use App\Models\ProposeProposal;
-
+use App\Http\Requests\ProposalRequest;
 
 class ProposalController extends Controller
 {      
-    public function HOSDProposalProposed()
+    public function ProposalProposedHOSD()
     {
+        //To view the page for HOSD
         $proposal = ProposeProposal::all();
         return view('proposal.proposal_listHOSD', compact('proposal'));
     }
 
-    public function CoordinatorProposalProposed()
+    public function ProposalProposedCoordinator()
     {
+        //To view page for Coordinator
         $proposal = ProposeProposal::all();
-        return view('proposal.proposal_listCorodinator', compact('proposal'));
+        return view('proposal.proposal_listCoordinator', compact('proposal'));
     }
-
-    public function DeanProposalProposed()
+    public function ProposalProposedDean()
     {
+        //To view page for Dean
         $proposal = ProposeProposal::all();
         return view('proposal.proposal_listDean', compact('proposal'));
     }
 
-    public function store(ProposalRequest $request)
+    public function show($id)
     {
-        Proposal::create($request->all());
-        //check balik
-
-        return redirect()->route('proposal.view')->with('success', 'Successfully added');
+        //view details of the proposal
+        $proposal = ProposalModel::find($id);
+        return view('proposal.show_proposal', compact('proposal'));
     }
 
     public function showProposal()
     {
-        //proposal view
         $proposal = ProposalModel::all();
         return view('proposal.proposal_view', compact('proposal'));
     }
 
-    public function show($id)
-    {
-        //proposal view
-        $proposal = Proposal::find($id);
-        return view('proposal.show_proposal', compact('proposal'));
-    }
-
-    public function createProposal($id)
+    public function createProposal()
     {
         return view('proposal.create_proposal');
     }
 
     public function editProposal($id)
     {
-        $proposal = Proposal::find($id);
+        $proposal = ProposalModel::find($id);
         return view('proposal.edit_proposal', compact('proposal'));
+    }
+
+    public function store(Request $request)
+    {
+        ProposalModel::create($request->all());
+        //check balik
+
+        return redirect()->route('proposal.view')->with('success', 'Successfully added');
+    }
+
+    public function update(ProposalRequest $request, $id)
+    {
+        $proposal = ProposalModel::find($id);
+        $proposalSubmit = SubmitProposal::where('proposal_id', '=', $proposal->id);
+        $proposalSubmit->delete();
+
+        $proposal->update($request->all());
+        $proposal->statusapprovalbyHOSD = "";
+        $proposal->statusapprovalbyCoordinator = "";
+        $proposal->statusapprovalbyDean = "";
+
+        return redirect()->route('proposal.view')->with('success', 'Successfully updated');
     }
 
     public function destroy($id)
     {
-        $proposal = Proposal::find($id);
+        $proposal = ProposalModel::find($id);
         $proposal->delete();
+        $proposal->submit->delete();
 
-        return back()->with('success', 'Successfully deleted');
+        return back ()->with('success', 'Successfully deleted');
     }
 
-    public function HOSDapproveProposal($id){
+    public function approveProposalHOSD($id){
 
-        $proposal = Proposal::find($id);
-
+        $proposal = ProposalModel::find($id);
         $proposal->statusbyHOSD = "Approved";
         $proposal->save();
         
         return back()->with('success', 'Successfully approved');
     }
 
-    public function HOSDrejectProposal($id){
+    public function rejectProposalHOSD($id){
 
-        $proposal = Proposal::find($id);
-       
+        $proposal = ProposalModel::find($id);
         $proposal->statusbyHOSD = "Rejected";
         $proposal->save();
 
@@ -88,20 +103,18 @@ class ProposalController extends Controller
         return back()->with('success', 'Successfully rejected');
     }
 
-    public function CoordinatorapproveProposal($id){
+    public function approveProposalCoordinator($id){
 
-        $proposal = Proposal::find($id);
-
+        $proposal = ProposalModel::find($id);
         $proposal->statusbyCoordinator = "Approved";
         $proposal->save();
         
         return back()->with('success', 'Successfully approved');
     }
 
-    public function CoordinatorrejectProposal($id){
+    public function rejectReportCoordinator($id){
 
-        $proposal = Proposal::find($id);
-       
+        $proposal = ProposalModel::find($id);
         $proposal->statusbyCoordinator = "Rejected";
         $proposal->save();
 
@@ -109,19 +122,18 @@ class ProposalController extends Controller
         return back()->with('success', 'Successfully rejected');
     }
 
-    public function DeanconfirmProposal($id){
+    public function confirmReportDean($id){
 
-        $proposal = Proposal::find($id);
-
+        $proposal = ProposalModel::find($id);
         $proposal->statusbyDean = "Confirm";
         $proposal->save();
         
         return back()->with('success', 'Successfully Confirm');
     }
 
-    public function DeandenyProposal($id){
+    public function denyReportDean($id){
 
-        $proposal = Proposal::find($id);
+        $proposal = ProposalModel::find($id);
        
         $proposal->statusbyDean = "Deny";
         $proposal->save();
@@ -129,4 +141,11 @@ class ProposalController extends Controller
 
         return back()->with('success', 'Successfully deny');
     }
+
+    public function showDelete($id){
+
+        $proposal = ProposalModel::find($id);
+        return view('proposal.delete_proposal', compact('proposal'));
+    }
+    
 }

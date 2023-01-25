@@ -21,7 +21,7 @@
                             @csrf
                             {{-- @method('PUT') --}}
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="ProposalCreator_name" id="floatingInput" placeholder="Creator name">
+                                <input type="text" class="form-control" name="ProposalCreator_name" id="floatingInput" placeholder="Proposal Creator Name">
                                 <label for="floatingInput">{{ $proposal->ProposalCreator_name }}</label>
                             </div>
                             <div class="form-floating mb-3">
@@ -30,16 +30,16 @@
                             </div>
                             <div class="d-sm-flex flex-lg-column gap-3">
                                 <div class="form-floating mb-3">
-                                    <input type="date" class="form-control" name="Proposal_date" id="floatingInput" placeholder="Proposal Date">
+                                    <input type="date" class="form-control" name="Proposal_date" id="floatingInput" placeholder="Report Date">
                                     <label for="floatingInput">{{ $proposal->Proposal_date }}</label>
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="objective" id="floatingInput" placeholder="Proposal objective">
+                                <input type="text" class="form-control" name="report_objective" id="floatingInput" placeholder="Proposal objective">
                                 <label for="floatingInput">{{ $proposal->Proposal_objective }}</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="description" id="floatingInput" placeholder="Proposal description">
+                                <input type="text" class="form-control" name="report_description" id="floatingInput" placeholder="Proposal description">
                                 <label for="floatingInput">{{ $proposal->Proposal_description }}</label>
                             </div>
                             <button class="btn btn-primary w-100 p-2 fs-5">Update</button>
@@ -47,8 +47,3 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-@endsection

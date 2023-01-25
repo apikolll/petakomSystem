@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class UserAccess
+class Lecturer
 {
     /**
      * Handle an incoming request.
@@ -14,12 +14,12 @@ class UserAccess
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->category == $role){
+        if(auth()->user()->category == "lecturer"){
             return $next($request);
-        } 
-        return abort(403, 'Unauthorized action.');
-        
+        }else{
+            return redirect('login');
+        }
     }
 }

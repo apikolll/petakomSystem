@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class ReportModel extends Model
 {
     use HasFactory;
@@ -19,7 +20,5 @@ class ReportModel extends Model
         'statusbyDean',
         'Report_description',
         'Report_objective'
-        
-    
     ];
 }

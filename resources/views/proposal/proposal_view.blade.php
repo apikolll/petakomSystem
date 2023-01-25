@@ -5,7 +5,8 @@
 <section class="p-5">
     <div class="container">
         <div class="text-center">
-            <span class="fw-semibold display-2">Proposal</span>
+            <span class="fw-semibold display-2">Proposals</span>
+            
         </div>
 
         <a href="{{ route('proposal.create') }}" class="btn btn-warning p-2 mb-3 fw-semibold">Create new proposal</a>
@@ -51,7 +52,8 @@
                                     </div>
                                     @else
                                     <div class="badge bg-success text-wrap" style="width: 6rem;">
-                                        {{ $proposals->statusbyCoordinator }}
+                                        {{ $proposals->statusbyHOSD }}
+                                    </div>
                                     @endif
                                 </td>
                                 <td>
@@ -62,39 +64,39 @@
                                     @else
                                     <div class="badge bg-success text-wrap" style="width: 6rem;">
                                         {{ $proposals->statusbyCoordinator }}
+                                    </div>
                                     @endif
                                 </td>
                                 <td>
-                                    @if ($proposal->statusbyDean == "Rejected")
+                                    @if ($proposals->statusbyDean == "Deny")
                                     <div class="badge bg-danger text-wrap" style="width: 6rem;">
-                                        {{ $proposal->statusbyDean }}
+                                        {{ $proposals->statusbyDean }}
                                     </div>
                                     @else
                                     <div class="badge bg-success text-wrap" style="width: 6rem;">
-                                        {{ $proposal->statusbyDean }}
+                                        {{ $proposals->statusbyDean }}
+                                    </div>
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('proposals.show', $proposals->id) }}"
+                                    <a href="{{ route('proposal.show', $proposals->id) }}"
                                         class="text-decoration-none btn btn-outline-success">View</a>
 
-                                    @if ($proposals->statusbyHOSD == "Rejected" || $proposals->statusbyCoordinator == "Rejected" || $proposals->statusbyDean == "Deny")
+                                    @if ($proposals->statusbyHOSD == "Rejected" || $proposals->statusbyCoordinator == "Rejected" || $proposals->statusbyDean== "Deny")
                                     <a href="{{ route('proposal.edit', $proposals->id) }}"
-                                        class="text-decoration-none btn btn-warning">Edit proposal</a>
+                                        class="text-decoration-none btn btn-warning">Edit Proposal</a>
                                     <a href="#" class="btn btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#ModalDelete{{ $proposals->id }}">Delete</a>
                                     @else
                                     <a href="{{ route('proposal.edit', $proposals->id) }}"
-                                        class="text-decoration-none btn btn-warning disabled">Edit proposal</a>
-                                    <a href="{{ route('propose.proposal', $proposals->id) }}"
-                                        class="text-decoration-none btn btn-primary disabled">Propose</a>
+                                        class="text-decoration-none btn btn-warning disabled">Edit Proposal</a>
                                     <a href="#" class="btn btn-danger disabled" data-bs-toggle="modal"
                                         data-bs-target="#ModalDelete{{ $proposals->id }}">Delete</a>
                                     @endif
 
 
                                 </td>
-                                @include('proposal.delete')
+                                @include('proposal.delete_proposal')
                             </tr>
                             @endforeach
                             @else

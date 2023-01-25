@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ReportModel;
 use App\Models\ProposeReport;
+use App\Http\Requests\ReportRequest;
 
 class ReportController extends Controller
 {
@@ -31,16 +32,15 @@ class ReportController extends Controller
     public function show($id)
     {
         //view details of the report
-        $report = Report::find($id);
+        $report = ReportModel::find($id);
         return view('report.show_report', compact('report'));
     }
 
     public function showReport()
     {
-        $report = Report::all();
+        $report = ReportModel::all();
         return view(('report.report_view'), compact('report'));
     }
-
 
     public function createReport()
     {
@@ -49,18 +49,25 @@ class ReportController extends Controller
 
     public function editReport($id)
     {
-        $report = Report::find($id);
+        $report = ReportModel::find($id);
         return view('report.edit_report', compact('report'));
 
     }
-    public function store(ReportRequest $request)
+    public function store(Request $request)
     {
-        Report::create($request->all());
+        // $report = new ReportModel();
+        // $report->ReportCreator_name = $request->ReportCreator_name;
+        // $report->Report_Title = $request->Report_Title;
+        // $report->Report_date = $request->Report_date;
+        // $report->Report_objective = $request->Report_objective;
+        // $report->Report_description = $request->Report_description;
+        // $report->save();
+        ReportModel::create($request->all());
         return redirect()->route('report.view')->with('success', 'Successfully added');
     }
     public function update(ReportRequest $request, $id)
     {
-        $report = Report::find($id);
+        $report = ReportModel::find($id);
         $reportSubmit = SubmitReport::where('report_id', '=', $report->id);
         $reportSubmit->delete();
 
@@ -74,7 +81,7 @@ class ReportController extends Controller
 
     public function destroy($id)
     {
-        $report = Report::find($id);
+        $report = ReportModel::find($id);
         $report->delete();
         $report->submit->delete();
 
@@ -83,16 +90,16 @@ class ReportController extends Controller
 
     public function approveReportHOSD($id)
     {
-        $report = Report::find($id);
+        $report = ReportModel::find($id);
         $report->statusbyHOSD = "Approved";
         $report->save();
 
         return back()->with('success', 'Successfully approved');
     }
 
-    public function RejectReportHOSD($id)
+    public function rejectReportHOSD($id)
     {
-        $report = Report::find($id);
+        $report = ReportModel::find($id);
         $report->statusbyHOSD = "Rejected";
         $report->save();
 
@@ -102,16 +109,16 @@ class ReportController extends Controller
 
     public function approveReportCoordinator($id)
     {
-        $report = Report::find($id);
+        $report = ReportModel::find($id);
         $report->statusbyCoordinator = "Approved";
         $report->save();
 
         return back()->with('success', 'Successfully approved');
     }
 
-    public function RejectReportCoordinator($id)
+    public function rejectReportCoordinator($id)
     {
-        $report = Report::find($id);
+        $report = ReportModel::find($id);
         $report->statusbyCoordinator = "Rejected";
         $report->save();
 
@@ -120,19 +127,25 @@ class ReportController extends Controller
 
     public function confirmReportDean($id)
     {
-        $report = Report::find($id);
+        $report = ReportModel::find($id);
         $report->statusbyDean = "Confirm";
         $report->save();
 
         return back()->with('success', 'Successfully confirm');
     }
 
-    public function DenyReportCoordinator($id)
+    public function denyReportDean($id)
     {
-        $report = Report::find($id);
-        $report->statusbyDean = "Confirm";
+        $report = ReportModel::find($id);
+        $report->statusbyDean = "Deny";
         $report->save();
 
         return back()->with('success', 'Successfully deny');
+    }
+
+    public function showDelete($id){
+
+        $report = ReportModel::find($id);
+        return view('report.delete_report', compact('report'));
     }
 }

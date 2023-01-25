@@ -1,12 +1,18 @@
 @extends('layouts.app')
 
+<title>Petakom | Login </title>
+<link rel="shortcut icon" href="bootstrap1/assets/images/logo/logo.png" type="image/svg" />
+
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+
+        <center><img src="{{ asset('image/petakom.png') }}" alt="petakom-logo"></center>
+        <center><h1> PETAKOM MANAGEMENT SYSTEM </H1></center>
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
-
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf

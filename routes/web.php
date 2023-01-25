@@ -1,14 +1,20 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+
+use App\Http\Controllers\ElectionController;
+use App\Http\Controllers\UserController;
+
 use App\Http\Controllers\BulletinController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\ReportController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +42,9 @@ Route::get('/testpage', function(){
 // });
 
 Auth::routes();
+
+
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
@@ -81,6 +90,7 @@ Route::controller(BulletinController::class)->group(function () {
     //----------------------------- USER EXCEPT PETAKOM ----------------------------//
     //get page bulletin for users
     Route::get('/bulletinUserPage', 'indexUser');
+
 
     //show bulletin news in full details
     Route::get('/bulletin/{id}/show', 'showNewsUser');
@@ -149,6 +159,39 @@ Route::controller(BulletinController::class)->group(function () {
         });
 });
 
+
+Route::controller(ActivityController::class)->group(function(){ 
+    Route::get('/activity', 'index')->name('activity.page');
+    Route::get('/showactivity', 'show')->name('activity.show');
+    Route::get('/showactivity_login', 'showActivity')->name('activity.login');
+    Route::get('/createactivity', 'createActivity')->name('activity.create');
+    Route::get('/editactivity', 'editActivity')->name('activity.edit');
+});
+
+Route::controller(UserController::class)->group(function(){ 
+    Route::get('/myProfile', 'index')->name('myProfile.page');
+    Route::get('/userList', 'userList')->name('userList.page');
+    Route::get('/registerUser', 'registerUser')->name('registerUser');
+    Route::post('/addUser', 'addUser')->name('addUser');
+    Route::delete('/deleteUser/{id}', 'deleteUser')->name('deleteUser');
+});
+
+Route::controller(App\Http\Controllers\ElectionController::class)->group(function(){
+    Route::get('/studList', 'vote')->name('election.student.studList');
+    Route::get('/register', 'register')->name('election.student.register');
+    Route::get('/registration', 'registration')->name('election.student.registration');
+    Route::get('/updateReg', 'updateReg')->name('election.student.updateReg');
+    Route::get('/comList', 'comList')->name('election.committee.comList');
+    Route::get('/comInfo', 'comInfo')->name('election.committee.comInfo');
+    Route::get('/hosdList', 'hosdList')->name('election.hosd.hosdList');
+    Route::get('/hosdInfo', 'hosdInfo')->name('election.hosd.hosdInfo');
+
+    Route::post('/store', 'store')->name('store');
+    Route::get('/show', 'show')->name('show');
+    Route::get('/update', 'update')->name('update');
+    Route::get('/approval/{id}', 'approval')->name('approval');
+});
+
 //----------------------------- REPORT MODULE ----------------------------//
 Route::controller(ReportController::class)->group(function () {
     
@@ -182,6 +225,7 @@ Route::controller(ReportController::class)->group(function () {
         Route::get('/denyDeanReport/{id}', 'denyReportDean')->name('ReportDean.deny');     
     });
 });
+
 
 
 

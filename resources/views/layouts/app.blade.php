@@ -49,6 +49,12 @@
                     <ul class="navbar-nav ms-auto gap-3">
                         <!-- Authentication Links -->
                         @guest
+
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('') }}</a>
+                                </li>
+
                         @if (Route::has('login'))
                         <li class="nav-item">
                             <a href="{{ route('login') }}" class="btn btn-primary" type="button">{{ __('Login') }}</a>
@@ -87,6 +93,7 @@
                                 <a class="nav-link" href="{{ route('proposed.activity') }}">{{ __('Activities') }}</a>
                             </li>
                             @endif
+
                             @endif
 
                             <!-- Calendar -->
@@ -116,6 +123,14 @@
                                 <a class="nav-link" href="{{ route('ProposalDean.page') }}">{{ __('Proposal') }}</a>
                             </li>
                             @endif
+
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->email }}
+                                </a>
+                        
+
                             @endif
                             <!-- Report -->
                             @if(Auth::check())
@@ -161,6 +176,7 @@
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Hi, {{ Auth::user()->name }}
                             </a>
+
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

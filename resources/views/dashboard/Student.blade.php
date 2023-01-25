@@ -1,4 +1,7 @@
-@extends('layouts.app')
+@extends('layout.master')
+
+<title>Petakom | Dashboard</title>
+<link rel="shortcut icon" href="bootstrap1/assets/images/logo/logo.png" type="image/svg" />
 
 @section('content')
 <div class="container">
@@ -20,4 +23,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection@

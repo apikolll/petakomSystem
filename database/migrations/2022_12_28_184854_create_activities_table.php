@@ -17,10 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('organizer_name');
             $table->string('name');
-            $table->date('date');
+            $table->date('startdate');
+            $table->date('enddate');
             $table->time('time');
             $table->string('venue');
-            $table->string('status')->nullable();
+            $table->string('HOSD')->nullable();
+            $table->string('Coordinator')->nullable();
+            $table->string('Dean')->nullable();
             $table->string('description');
             $table->string('objective');
             $table->timestamps('');

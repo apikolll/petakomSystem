@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.master')
 @section('content')
 
 <style>
@@ -45,7 +45,7 @@
 
         <!-- edited by -->
         <label><b>Edited By <span style="color:red;">*</span></b></label></br>
-        <input type="text" name="updateBy" id="updateBy" class="form-control" value="{{ Auth::user()->name }}" readonly><br><br>
+        <input type="text" name="updateBy" id="updateBy" class="form-control" value="{{ Auth::user()->Fname }}" readonly><br><br>
 
         <!-- button submit -->
         <input type="submit" value="Update" style="width: 100%;" class="btn btn-success"><br>

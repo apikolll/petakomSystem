@@ -14,17 +14,16 @@ class ReportController extends Controller
     {
         $report = ProposeReport::all();
         return view('report.report_listHOSD', compact('report'));
-
     }
     //To view page for Coordinator
     public function ReportProposedCoordinator()
-    { 
+    {
         $report = ProposeReport::all();
         return view('report.report_listCoordinator', compact('report'));
     }
     //To view page for Dean
     public function ReportProposedDean()
-    { 
+    {
         $report = ProposeReport::all();
         return view('report.report_listDean', compact('report'));
     }
@@ -44,14 +43,13 @@ class ReportController extends Controller
 
     public function createReport()
     {
-         return view('report.create_report');
+        return view('report.create_report');
     }
 
     public function editReport($id)
     {
         $report = ReportModel::find($id);
         return view('report.edit_report', compact('report'));
-
     }
     public function store(Request $request)
     {
@@ -68,7 +66,7 @@ class ReportController extends Controller
     public function update(ReportRequest $request, $id)
     {
         $report = ReportModel::find($id);
-        $reportSubmit = SubmitReport::where('report_id', '=', $report->id);
+        $reportSubmit = ReportModel::where('report_id', '=', $report->id);
         $reportSubmit->delete();
 
         $report->update($request->all());
@@ -85,7 +83,7 @@ class ReportController extends Controller
         $report->delete();
         $report->submit->delete();
 
-        return back ()->with('success', 'Successfully deleted');
+        return back()->with('success', 'Successfully deleted');
     }
 
     public function approveReportHOSD($id)
@@ -143,9 +141,30 @@ class ReportController extends Controller
         return back()->with('success', 'Successfully deny');
     }
 
-    public function showDelete($id){
-
+    public function showDelete($id)
+    {
         $report = ReportModel::find($id);
         return view('report.delete_report', compact('report'));
+    }
+
+    public function proposeReport($id)
+    {
+        $report = ReportModel::find($id);
+        $propose = new ProposeReport();
+        $preport = $report->id;
+        $exist = ProposeReport::where([
+            ['reports_id', '=', $preport]
+        ])->first();
+
+
+        if ($exist) {
+            return back()->with('error', 'Already proposed');
+        }
+
+        $propose->reports_id = $report->id;
+        $propose->save();
+
+
+        return back()->with('success', 'Successfully proposed');
     }
 }

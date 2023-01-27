@@ -13,7 +13,8 @@ class Activity extends Model
     protected $fillable = [
         'organizer_name',
         'name',
-        'date',
+        'startdate',
+        'enddate',
         'time',
         'venue',
         'description',

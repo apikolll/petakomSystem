@@ -1,6 +1,6 @@
 <!-- This is where view list of report, approve or decline report for Dean  -->
 
-@extends('layouts.app')
+@extends('layout.master')
 
 @section('content')
 
@@ -44,9 +44,9 @@
                             <tr class="align-middle">
                                 <td>{{ $reports->id }}</td>
                                 <td>{{ $reports->report->Report_Title }}</td>
-                                <td>{{ \Carbon\Carbon::parse($reports->report->Report_date)->format('j F, Y') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($reports->report->date)->format('j F, Y') }}</td>
                                 <td>
-                                    @if ($reports->reports->statusbyDean == "Deny")
+                                    @if ($reports->report->statusbyDean == "Deny")
                                     <div class="badge bg-danger text-wrap" style="width: 6rem;">
                                         {{ $reports->report->statusbyDean }}
                                     </div>

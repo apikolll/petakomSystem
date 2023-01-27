@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.master')
 @section('content')
 
 <style>
@@ -26,7 +26,7 @@
 
         <!-- author name -->
         <label><b>Author Name <span style="color:red;">*</span></b></label></br>
-        <input type="text" name="author_name" id="author_name" class="form-control" value="{{ Auth::user()->name }}" required><br><br>
+        <input type="text" name="author_name" id="author_name" class="form-control" value="{{ Auth::user()->Fname }}" required><br><br>
 
         <!-- news details section -->
         <p class="hidden">News Details</p>

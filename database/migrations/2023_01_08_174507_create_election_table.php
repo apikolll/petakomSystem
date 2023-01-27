@@ -15,13 +15,16 @@ return new class extends Migration
     {
         Schema::create('election', function (Blueprint $table) {
             $table->id();
-            $table->blob('profile_img');
-            $table->varchar('student_ID');
-            $table->varchar('full_name');
-            $table->varchar('crt_semester');
+            $table->bigInteger('user_id');
+            $table->string('profile_img');
+            $table->string('student_ID');
+            $table->string('full_name');
+            $table->string('crt_semester');
             $table->double('crt_result');
-            $table->varchar('prv_activities');
-            $table->varchar('manifesto');
+            $table->string('prv_activities');
+            $table->string('manifesto');
+            $table->string('status');
+            $table->bigInteger('total_vote');
             $table->timestamps();
         });
     }

@@ -12,22 +12,22 @@ class DashboardController extends Controller
     {
         $category = Auth::user()->category;
 
-        if ($category == 'student') {
+        if ($category == 'Student') {
             return redirect()->route('activity.login');
         }
-        if ($category == 'lecturer') {
+        if ($category == 'Lecturer') {
             return view('dashboard.Lecturer');
         }
-        if ($category == 'committee') {
+        if ($category == 'Committee') {
             return view('dashboard.Committee');
         }
-        if ($category == 'coordinator') {
+        if ($category == 'Coordinator') {
             return view('dashboard.Coordinator');
         }
-        if ($category == 'hosd') {
+        if ($category == 'HOSD') {
             return view('dashboard.Hosd');
         }
-        if ($category == 'dean') {
+        if ($category == 'Dean') {
             return view('dashboard.Dean');
         }
     }

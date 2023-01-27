@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.master')
 
 @section('content')
 
@@ -6,7 +6,7 @@
     <div class="container">
         <div class="text-center">
             <span class="fw-semibold display-2">Reports</span>
-            
+
         </div>
 
         <a href="{{ route('report.create') }}" class="btn btn-warning p-2 mb-3 fw-semibold">Create new report</a>
@@ -82,12 +82,19 @@
                                     <a href="{{ route('report.show', $reports->id) }}"
                                         class="text-decoration-none btn btn-outline-success">View</a>
 
-                                    @if ($reports->statusbyHOSD == "Rejected" || $reports->statusbyCoordinator == "Rejected" || $reports->statusbyDean== "Deny")
+
+                                    @if ($reports->statusbyHOSD == "Rejected" || $reports->statusbyCoordinator ==
+                                    "Rejected" || $reports->statusbyDean== "Deny")
+                                    <a href="{{ route('propose.activity', $reports->id) }}"
+                                        class="text-decoration-none btn btn-primary">Propose</a>
                                     <a href="{{ route('report.edit', $reports->id) }}"
                                         class="text-decoration-none btn btn-warning">Edit Report</a>
+
                                     <a href="#" class="btn btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#ModalDelete{{ $reports->id }}">Delete</a>
                                     @else
+                                    <a href="{{ route('propose.report', $reports->id) }}"
+                                        class="text-decoration-none btn btn-primary ">Propose</a>
                                     <a href="{{ route('report.edit', $reports->id) }}"
                                         class="text-decoration-none btn btn-warning disabled">Edit Report</a>
                                     <a href="#" class="btn btn-danger disabled" data-bs-toggle="modal"

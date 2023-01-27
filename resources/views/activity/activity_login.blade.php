@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.master')
 
 @section('content')
 
@@ -31,8 +31,10 @@
                             <tr class="text-center">
                                 <th>No</th>
                                 <th>Activity</th>
-                                <th>Date</th>
-                                <th>Status</th>
+                                <th>Start Date</th>
+                                <th>HOSD Approval</th>
+                                <th>Coordinator Approval</th>
+                                <th>Dean Approval</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -42,15 +44,15 @@
                             <tr>
                                 <td>{{ $activities->id }}</td>
                                 <td>{{ $activities->name }}</td>
-                                <td>{{ \Carbon\Carbon::parse($activities->date)->format('j F, Y') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($activities->startdate)->format('j F, Y') }}</td>
                                 <td>
-                                    @if ($activities->status == "Rejected")
+                                    @if ($activities->HOSD == "Rejected")
                                     <div class="badge bg-danger text-wrap" style="width: 6rem;">
-                                        {{ $activities->status }}
+                                        {{ $activities->HOSD }}
                                     </div>
-                                    @elseif ($activities->status == "Approved")
+                                    @elseif ($activities->HOSD == "Approved")
                                     <div class="badge bg-success text-wrap" style="width: 6rem;">
-                                        {{ $activities->status }}
+                                        {{ $activities->HOSD }}
                                     </div>
                                     @elseif ($activities->propose)
                                     <div class="badge bg-warning text-wrap text-dark" style="width: 6rem;">
@@ -62,6 +64,45 @@
                                     </div>
                                     @endif
                                 </td>
+                                <td>
+                                    @if ($activities->Coordinator == "Rejected")
+                                    <div class="badge bg-danger text-wrap" style="width: 6rem;">
+                                        {{ $activities->Coordinator }}
+                                    </div>
+                                    @elseif ($activities->Coordinator == "Approved")
+                                    <div class="badge bg-success text-wrap" style="width: 6rem;">
+                                        {{ $activities->Coordinator }}
+                                    </div>
+                                    @elseif ($activities->propose)
+                                    <div class="badge bg-warning text-wrap text-dark" style="width: 6rem;">
+                                        Pending
+                                    </div>
+                                    @else
+                                    <div class="badge bg-primary text-wrap text-light" style="width: 6rem;">
+                                        Waiting...
+                                    </div>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($activities->Dean == "Rejected")
+                                    <div class="badge bg-danger text-wrap" style="width: 6rem;">
+                                        {{ $activities->Dean }}
+                                    </div>
+                                    @elseif ($activities->Dean == "Approved")
+                                    <div class="badge bg-success text-wrap" style="width: 6rem;">
+                                        {{ $activities->Dean }}
+                                    </div>
+                                    @elseif ($activities->propose)
+                                    <div class="badge bg-warning text-wrap text-dark" style="width: 6rem;">
+                                        Pending
+                                    </div>
+                                    @else
+                                    <div class="badge bg-primary text-wrap text-light" style="width: 6rem;">
+                                        Waiting...
+                                    </div>
+                                    @endif
+                                </td>
+
                                 <td>
                                     <a href="{{ route('activity.show', $activities->id) }}"
                                         class="text-decoration-none btn btn-outline-success">View</a>

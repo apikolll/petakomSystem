@@ -17,9 +17,18 @@ class ActivityController extends Controller
     // temporary
 
     public function activityProposed(){
-
         $activity = ProposeActivity::all();
-        return view('activity.petakomcom.activity_list', compact('activity'));
+        if(auth()->user()->category == "Coordinator")
+        {
+            return view('activity.coordinator.coor', compact('activity'));
+        }elseif(auth()->user()->category == "Dean")
+        {  
+            return view('activity.dean.dean', compact('activity'));
+        }elseif(auth()->user()->category == "HOSD")
+        {
+            return view('activity.hosd.hosd', compact('activity'));
+        }
+        
     }
 
     public function show($id)
@@ -74,7 +83,7 @@ class ActivityController extends Controller
     {
         $activity = Activity::find($id);
         $activity->delete();
-        $activity->propose->delete();
+        // $activity->propose->delete();
 
         return back()->with('success', 'Successfully deleted');
     }
@@ -100,27 +109,6 @@ class ActivityController extends Controller
         return back()->with('success', 'Successfully proposed');
     }
 
-    public function approveActivity($id){
-
-        $activity = Activity::find($id);
-
-        $activity->status = "Approved";
-        $activity->save();
-        
-        return back()->with('success', 'Successfully approved');
-    }
-
-    public function rejectActivity($id){
-
-        $activity = Activity::find($id);
-       
-        $activity->status = "Rejected";
-        $activity->save();
-
-
-        return back()->with('success', 'Successfully rejected');
-    }
-
     public function showProposedActivity(){
 
         $propose = Activity::where('status', '=', 'Approved')->get();
@@ -128,4 +116,67 @@ class ActivityController extends Controller
         // $propose = ProposeActivity::all();
         return view('activity.propose_activity', compact('propose'));
     }
+
+    // HOSD
+    public function hosdApproval($id){
+
+        $activity = Activity::find($id);
+        $activity->HOSD = "Approved";
+        $activity->save();
+        
+        return back()->with('success', 'Successfully approved');
+    }
+
+    public function hosdReject($id){
+
+        $activity = Activity::find($id);
+       
+        $activity->HOSD = "Rejected";
+        $activity->save();
+
+
+        return back()->with('success', 'Successfully rejected');
+    }
+
+    // Coordinator
+    public function coorApproval($id){
+
+        $activity = Activity::find($id);
+        $activity->Coordinator = "Approved";
+        $activity->save();
+        
+        return back()->with('success', 'Successfully approved');
+    }
+
+    public function coorReject($id){
+
+        $activity = Activity::find($id);
+       
+        $activity->Coordinator = "Rejected";
+        $activity->save();
+
+        return back()->with('success', 'Successfully rejected');
+    }
+
+    // Dean
+    public function deanApproval($id){
+
+        $activity = Activity::find($id);
+        $activity->Dean = "Approved";
+        $activity->save();
+        
+        return back()->with('success', 'Successfully approved');
+    }
+
+    public function deanReject($id){
+
+        $activity = Activity::find($id);
+       
+        $activity->Dean = "Rejected";
+        $activity->save();
+
+
+        return back()->with('success', 'Successfully rejected');
+    }
+
 }

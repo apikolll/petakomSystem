@@ -77,7 +77,7 @@
                             <td>{{ $data->phoneNum }}</td>
                             <td>
                                 <div class="btn-group" style="float: right;">
-                                    <a href="" class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('editUser', $data->id) }}" class="btn btn-primary">Edit</a>
                                     <button class="btn btn-danger" type="button" onclick="deleteItem(this)" data-id="{{ $data->id }}" data-name="{{ $data->Fname }}">Delete</button>
                                 </div>
                             </td>

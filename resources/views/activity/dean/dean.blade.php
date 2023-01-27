@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.master')
 
 @section('content')
 
@@ -45,22 +45,22 @@
                                 <td>{{ $activities->activity->name }}</td>
                                 <td>{{ \Carbon\Carbon::parse($activities->activity->date)->format('j F, Y') }}</td>
                                 <td>
-                                    @if ($activities->activity->status == "Rejected")
+                                    @if ($activities->activity->Dean == "Rejected")
                                     <div class="badge bg-danger text-wrap" style="width: 6rem;">
-                                        {{ $activities->activity->status }}
+                                        {{ $activities->activity->Dean }}
                                     </div>
                                     @else
                                     <div class="badge bg-success text-wrap" style="width: 6rem;">
-                                        {{ $activities->activity->status }}
+                                        {{ $activities->activity->Dean }}
                                     </div>
                                     @endif
                                 </td>
                                 <td>
                                     <a href="{{ route('activity.show', $activities->Activity->id) }}"
                                         class="text-decoration-none btn btn-outline-success">View</a>
-                                    <a href="{{ route('propose.approve', $activities->activity->id) }}"
+                                    <a href="{{ route('dean.approve', $activities->activity->id) }}"
                                         class="text-decoration-none btn btn-primary">Approve</a>
-                                    <a href="{{ route('propose.reject', $activities->activity->id) }}"
+                                    <a href="{{ route('dean.reject', $activities->activity->id) }}"
                                         class="text-decoration-none btn btn-danger">Reject</a>
                                 </td>
                             </tr>

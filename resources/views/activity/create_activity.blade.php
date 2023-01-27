@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends('layout.master')
 
 @section('content')
 
@@ -20,34 +19,68 @@
                         <form action="{{ route('store.activity') }}" method="post">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="organizer_name" id="floatingInput" placeholder="Organizer name">
+                                <input type="text" class="form-control" name="organizer_name" id="floatingInput"
+                                    placeholder="Organizer name">
                                 <label for="floatingInput">Organizer name</label>
+                                @error('organizer_name')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="name" id="floatingInput" placeholder="Activity name">
+                                <input type="text" class="form-control" name="name" id="floatingInput"
+                                    placeholder="Activity name">
                                 <label for="floatingInput">Activity name</label>
-                            </div>
-                            <div class="d-sm-flex flex-lg-column gap-3">
-                                <div class="form-floating mb-3">
-                                    <input type="date" class="form-control" name="date" id="floatingInput" placeholder="Date">
-                                    <label for="floatingInput">Date</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="time" class="form-control" name="time" id="floatingInput" placeholder="Time">
-                                    <label for="floatingInput">Time</label>
-                                </div>
+                                @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="venue" id="floatingInput" placeholder="Venue">
+                                <input type="date" class="form-control" name="startdate" id="floatingInput"
+                                    placeholder="Start Date">
+                                <label for="floatingInput">Start Date</label>
+                                @error('startdate')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" name="enddate" id="floatingInput"
+                                    placeholder="End Date">
+                                <label for="floatingInput">End Date</label>
+                                @error('enddate')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="time" class="form-control" name="time" id="floatingInput"
+                                    placeholder="Time">
+                                <label for="floatingInput">Time</label>
+                                @error('time')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="venue" id="floatingInput"
+                                    placeholder="Venue">
                                 <label for="floatingInput">Venue</label>
+                                @error('venue')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="description" id="floatingInput" placeholder="Activity description">
+                                <input type="text" class="form-control" name="description" id="floatingInput"
+                                    placeholder="Activity description">
                                 <label for="floatingInput">Activity description</label>
+                                @error('description')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="objective" id="floatingInput" placeholder="Activity objective">
+                                <input type="text" class="form-control" name="objective" id="floatingInput"
+                                    placeholder="Activity objective">
                                 <label for="floatingInput">Activity objective</label>
+                                @error('objective')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <button class="btn btn-warning w-100 p-2 fs-5">Create</button>
                         </form>

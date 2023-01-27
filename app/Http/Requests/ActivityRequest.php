@@ -26,8 +26,10 @@ class ActivityRequest extends FormRequest
         return [
             'organizer_name' => 'required',
             'name' => 'required',
-            'date' => 'required',
+            'startdate' => 'required',
+            'enddate' => 'required',
             'time' => 'required',
+            'venue' => 'required',
             'description' => 'required',
             'objective' => 'required'
         ];

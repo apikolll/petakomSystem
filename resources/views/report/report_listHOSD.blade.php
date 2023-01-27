@@ -1,6 +1,6 @@
 <!-- This is where view list of report, approve or decline report for HOSD  -->
 
-@extends('layouts.app')
+@extends('layout.master')
 
 @section('content')
 
@@ -46,7 +46,7 @@
                                 <td>{{ $reports->report->Report_Title }}</td>
                                 <td>{{ \Carbon\Carbon::parse($reports->report->Report_date)->format('j F, Y') }}</td>
                                 <td>
-                                    @if ($reports->reports->statusbyHOSD == "Rejected")
+                                    @if ($reports->report->statusbyHOSD == "Rejected")
                                     <div class="badge bg-danger text-wrap" style="width: 6rem;">
                                         {{ $reports->report->statusbyHOSD }}
                                     </div>

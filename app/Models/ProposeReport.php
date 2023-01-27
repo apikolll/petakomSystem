@@ -11,6 +11,6 @@ class ProposeReport extends Model
     use HasFactory;
 
     public function Report(){
-        return $this->belongsTo(ReportModel::class);
+        return $this->belongsTo(ReportModel::class, 'reports_id');
     }
 }

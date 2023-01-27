@@ -4,16 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Search') }}</div>
-
-                <div class="card-body">
-                    <center><input type="search" id="gsearch" name="gsearch" style="width:70%">
-                        <input type="submit">
-                    </center>
-                </div>
-
-            </div><br>
+            <br>
             <center>
                 <h2><strong>ELECTION CANDIDATE LIST</strong></h2>
             </center>
@@ -23,39 +14,37 @@
             <div class="card">
                 <div class="card-header">{{ __('List of Election Candidate') }}</div>
                 <div class="card-body">
-
-
                     <table class="table text-center">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Year</th>
-                                <th scope="col"></th>
+                                <th scope="col">Student ID</th>
+                                <th scope="col">Status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider align-middle">
-
+                            <!--Display data from database-->
                             @foreach($election as $key=>$data)
                             <tr id="row{{ $data->id }}">
                                 <th scope="row">{{ $data->id }}</th>
-                                <td>{{ $data->full_name }}</td>
-                                <td>{{ $data->crt_semester }}</td>
+                                <td style="text-align:left">{{ $data->full_name }}</td>
+                                <td>{{ $data->student_ID }}</td>
                                 <td>{{ $data->status }}</td>
                                 <td>
-                                    <a class="btn btn-success" href="/hosdInfo">View Details</a>
+                                    <!--view details button-->
+                                    <a class="btn btn-warning" href="{{ route('election.coorInfo', $data->id) }}">View Details</a>
+                                    <!--approve registration-->
                                     <a class="btn btn-success" href="{{ route('approval', $data->id) }}">Approve</a>
-                                    <a class="btn btn-success" href="/studList">Reject</a>
-                                </td> 
-                            </tr> 
+                                    <!--reject registration-->
+                                    <a class="btn btn-danger" href="{{ route('reject', $data->id) }}">Reject</a>
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
-
-
                 </div>
-
             </div>
         </div>
     </div>

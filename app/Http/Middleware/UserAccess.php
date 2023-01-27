@@ -16,10 +16,14 @@ class UserAccess
      */
     public function handle(Request $request, Closure $next, $role)
     {
-        if(auth()->user()->category == $role){
-            return $next($request);
-        } 
-        return abort(403, 'Unauthorized action.');
+        if (! auth()->user()->category === $role) {
+            return abort(403, 'Unauthorized action.');
+        }
+        return $next($request);
+        // if(auth()->user()->category == $role){
+        //     return $next($request);
+        // } 
+        // return abort(403, 'Unauthorized action.');
         
     }
 }

@@ -1,4 +1,3 @@
-
 @extends('layout.master')
 
 <title>Petakom | Dashboard</title>
@@ -17,7 +16,6 @@
                         {{ session('status') }}
                     </div>
                     @endif
-
                     {{ __('You are logged in as a committee!') }}
                 </div>
             </div>

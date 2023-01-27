@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ProposeReport;
 
 
 class ReportModel extends Model
@@ -21,4 +22,8 @@ class ReportModel extends Model
         'Report_description',
         'Report_objective'
     ];
+
+    public function propose(){
+        return $this->hasOne(ProposeReport::class);
+    }
 }
